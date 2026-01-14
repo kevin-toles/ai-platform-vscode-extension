@@ -1,0 +1,338 @@
+{
+  "name": "mcp-container-tools",
+  "displayName": "MCP Container Tools",
+  "description": "VS Code extension to manage Docker containers via MCP tools",
+  "version": "0.0.1",
+  "publisher": "kevin-toles",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mcpContainerTools.refreshContainers",
+        "title": "Refresh Containers",
+        "icon": "$(refresh)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.refreshImages",
+        "title": "Refresh Images",
+        "icon": "$(refresh)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.refreshNetworks",
+        "title": "Refresh Networks",
+        "icon": "$(refresh)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.refreshVolumes",
+        "title": "Refresh Volumes",
+        "icon": "$(refresh)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.refreshAll",
+        "title": "Refresh All",
+        "icon": "$(refresh)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.startContainer",
+        "title": "Start Container",
+        "icon": "$(play)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.stopContainer",
+        "title": "Stop Container",
+        "icon": "$(debug-stop)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.restartContainer",
+        "title": "Restart Container",
+        "icon": "$(debug-restart)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.removeContainer",
+        "title": "Remove Container",
+        "icon": "$(trash)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.viewContainerLogs",
+        "title": "View Logs",
+        "icon": "$(output)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.inspectContainer",
+        "title": "Inspect Container",
+        "icon": "$(info)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.runContainer",
+        "title": "Run Container",
+        "icon": "$(add)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.pullImage",
+        "title": "Pull Image",
+        "icon": "$(cloud-download)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.removeImage",
+        "title": "Remove Image",
+        "icon": "$(trash)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.inspectImage",
+        "title": "Inspect Image",
+        "icon": "$(info)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.tagImage",
+        "title": "Tag Image",
+        "icon": "$(tag)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.pruneContainers",
+        "title": "Prune Containers",
+        "icon": "$(trash)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.pruneImages",
+        "title": "Prune Images",
+        "icon": "$(trash)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.pruneVolumes",
+        "title": "Prune Volumes",
+        "icon": "$(trash)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.pruneNetworks",
+        "title": "Prune Networks",
+        "icon": "$(trash)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.pruneAll",
+        "title": "Prune All Unused Resources",
+        "icon": "$(trash)",
+        "category": "MCP Containers"
+      },
+      {
+        "command": "mcpContainerTools.showOutput",
+        "title": "Show Output",
+        "icon": "$(output)",
+        "category": "MCP Containers"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "mcpContainerExplorer",
+          "title": "MCP Containers",
+          "icon": "resources/container-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "mcpContainerExplorer": [
+        {
+          "id": "mcpContainers",
+          "name": "Containers"
+        },
+        {
+          "id": "mcpImages",
+          "name": "Images"
+        },
+        {
+          "id": "mcpNetworks",
+          "name": "Networks"
+        },
+        {
+          "id": "mcpVolumes",
+          "name": "Volumes"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "mcpContainerTools.refreshContainers",
+          "when": "view == mcpContainers",
+          "group": "navigation"
+        },
+        {
+          "command": "mcpContainerTools.runContainer",
+          "when": "view == mcpContainers",
+          "group": "navigation"
+        },
+        {
+          "command": "mcpContainerTools.refreshImages",
+          "when": "view == mcpImages",
+          "group": "navigation"
+        },
+        {
+          "command": "mcpContainerTools.pullImage",
+          "when": "view == mcpImages",
+          "group": "navigation"
+        },
+        {
+          "command": "mcpContainerTools.refreshNetworks",
+          "when": "view == mcpNetworks",
+          "group": "navigation"
+        },
+        {
+          "command": "mcpContainerTools.refreshVolumes",
+          "when": "view == mcpVolumes",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "mcpContainerTools.startContainer",
+          "when": "view == mcpContainers && viewItem =~ /^container-(stopped|paused)$/",
+          "group": "inline@1"
+        },
+        {
+          "command": "mcpContainerTools.stopContainer",
+          "when": "view == mcpContainers && viewItem == container-running",
+          "group": "inline@1"
+        },
+        {
+          "command": "mcpContainerTools.viewContainerLogs",
+          "when": "view == mcpContainers && viewItem =~ /^container-/",
+          "group": "inline@2"
+        },
+        {
+          "command": "mcpContainerTools.restartContainer",
+          "when": "view == mcpContainers && viewItem == container-running",
+          "group": "1_actions@1"
+        },
+        {
+          "command": "mcpContainerTools.inspectContainer",
+          "when": "view == mcpContainers && viewItem =~ /^container-/",
+          "group": "2_info@1"
+        },
+        {
+          "command": "mcpContainerTools.removeContainer",
+          "when": "view == mcpContainers && viewItem =~ /^container-/",
+          "group": "3_danger@1"
+        },
+        {
+          "command": "mcpContainerTools.inspectImage",
+          "when": "view == mcpImages && viewItem == image",
+          "group": "1_info@1"
+        },
+        {
+          "command": "mcpContainerTools.tagImage",
+          "when": "view == mcpImages && viewItem == image",
+          "group": "2_actions@1"
+        },
+        {
+          "command": "mcpContainerTools.removeImage",
+          "when": "view == mcpImages && viewItem == image",
+          "group": "3_danger@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "mcpContainerTools.startContainer",
+          "when": "true"
+        },
+        {
+          "command": "mcpContainerTools.stopContainer",
+          "when": "true"
+        },
+        {
+          "command": "mcpContainerTools.restartContainer",
+          "when": "true"
+        },
+        {
+          "command": "mcpContainerTools.removeContainer",
+          "when": "true"
+        },
+        {
+          "command": "mcpContainerTools.viewContainerLogs",
+          "when": "true"
+        },
+        {
+          "command": "mcpContainerTools.inspectContainer",
+          "when": "true"
+        },
+        {
+          "command": "mcpContainerTools.runContainer",
+          "when": "true"
+        },
+        {
+          "command": "mcpContainerTools.pullImage",
+          "when": "true"
+        },
+        {
+          "command": "mcpContainerTools.pruneAll",
+          "when": "true"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "MCP Container Tools",
+      "properties": {
+        "mcpContainerTools.logLevel": {
+          "type": "string",
+          "enum": ["debug", "info", "warn", "error"],
+          "default": "info",
+          "description": "Log level for MCP Container Tools extension"
+        },
+        "mcpContainerTools.autoRefresh": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically refresh container lists"
+        },
+        "mcpContainerTools.refreshInterval": {
+          "type": "number",
+          "default": 30,
+          "description": "Auto-refresh interval in seconds (if autoRefresh is enabled)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2"
+  }
+}
