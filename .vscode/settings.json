@@ -2,42 +2,15 @@
   "mcp": {
     "servers": {
       "ai-kitchen-br": {
-        "type": "stdio",
-        "command": "node",
-        "args": ["dist/index.js"],
-        "cwd": "/Users/kevintoles/POC/ai-agents-mcp-server",
-        "env": {
-          "AI_AGENTS_URL": "http://localhost:8082",
-          "INFERENCE_SERVICE_URL": "http://localhost:8085",
-          "LLM_GATEWAY_URL": "http://localhost:8080",
-          "LLM_GATEWAY_DEFAULT_MODEL": "gpt-4o",
-          "SEMANTIC_SEARCH_URL": "http://localhost:8081",
-          "CODE_ORCHESTRATOR_URL": "http://localhost:8083",
-          "AUDIT_SERVICE_URL": "http://localhost:8084",
-          "NEO4J_HTTP_URL": "http://localhost:7474",
-          "NEO4J_USER": "neo4j",
-          "NEO4J_PASSWORD": "devpassword"
-        }
+        "type": "sse",
+        "url": "http://localhost:8087/mcp/sse"
       }
     }
   },
   "github.copilot.chat.mcp.servers": {
     "ai-kitchen-br": {
-      "command": "node",
-      "args": ["dist/index.js"],
-      "cwd": "/Users/kevintoles/POC/ai-agents-mcp-server",
-      "env": {
-        "AI_AGENTS_URL": "http://localhost:8082",
-        "INFERENCE_SERVICE_URL": "http://localhost:8085",
-        "LLM_GATEWAY_URL": "http://localhost:8080",
-        "LLM_GATEWAY_DEFAULT_MODEL": "gpt-4o",
-        "SEMANTIC_SEARCH_URL": "http://localhost:8081",
-        "CODE_ORCHESTRATOR_URL": "http://localhost:8083",
-        "AUDIT_SERVICE_URL": "http://localhost:8084",
-        "NEO4J_HTTP_URL": "http://localhost:7474",
-        "NEO4J_USER": "neo4j",
-        "NEO4J_PASSWORD": "devpassword"
-      }
+      "type": "sse",
+      "url": "http://localhost:8087/mcp/sse"
     }
   }
 }
